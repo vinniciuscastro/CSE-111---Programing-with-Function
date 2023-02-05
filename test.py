@@ -70,6 +70,9 @@
 # # this program will start executing.
 # main()
 
-def compute(x, y, z):
-    x = 7
-    result = compute(3, 2, x)
+# def compute(x, y, z):
+#     x = 7
+#     result = compute(3, 2, x)
+
+for _ in range(10):
+    print("Running the loop")
