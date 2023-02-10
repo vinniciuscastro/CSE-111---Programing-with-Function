@@ -74,5 +74,9 @@
 #     x = 7
 #     result = compute(3, 2, x)
 
-for _ in range(10):
-    print("Running the loop")
+# for _ in range(10):
+#     print("Running the loop")
+
+user = "Enter the percentage"
+entry = input()
+print(f"{user}: {entry}%")
