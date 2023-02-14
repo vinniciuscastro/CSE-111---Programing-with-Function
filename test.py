@@ -77,6 +77,13 @@
 # for _ in range(10):
 #     print("Running the loop")
 
-user = "Enter the percentage"
-entry = input()
-print(f"{user}: {entry}%")
+# user = "Enter the percentage"
+# entry = input()
+# print(f"{user}: {entry}%")
+
+last = ["Amanda", "Fatima", "Ana Maria"]
+name = ["Silva", "Bernades", "Braga"]
+
+for i, iname in enumerate():
+    lastname = iname[i]
+    
