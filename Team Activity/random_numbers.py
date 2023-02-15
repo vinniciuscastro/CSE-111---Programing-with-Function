@@ -9,8 +9,10 @@ def main():
     append_random_numbers(numbers, 2)
 
 def append_random_numbers(numbers_list, quantity=1):
+    vc_n = random.uniform(1, 100)
+    vc_rn = round(vc_n,1)
     for vc_i in range(quantity):
-        numbers_list.append((float(random.randint(1, 100))))
+        numbers_list.append(vc_rn)
         print(f"numbers {numbers_list}")
 
 
