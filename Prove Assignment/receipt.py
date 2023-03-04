@@ -2,7 +2,10 @@
 # Feb 28th 2023
 import csv
 def main():
-    pass
+    vc_index = 0
+    vc_name_index = 1
+    product_dic = read_dictionary("/Users/vinni/OneDrive/Documents/CSE 111 - Programing with Function/Prove Assignment/products.csv",vc_index)
+    print(f"All Products\n{product_dic}")
 
 def read_dictionary(filename, key_column_index):
         # Create an empty dictionary that will

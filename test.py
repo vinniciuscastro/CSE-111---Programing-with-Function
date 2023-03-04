@@ -184,15 +184,13 @@ while again == 'yes':
     correct_letter = ''    
     while guess != magic_word:
         guess = input('What is your new guess? ')
-        if guess != magic_word:
-            for i in range(len(magic_word)):
-                if guess[i] == magic_word[i]:
-                    correct_letter += guess[i]
-                else:
-                    print(guess[i], end='')
-                    print('_', end='')
-            print(f'\nHint: {correct_letter}\n')
-            correct_letter = ''            
+        if guess == "m":
+            print("Hint: m_ _ _ _ _")
+
+        elif guess == "o":
+            print("Hint: _ o _ _ _ _")
+        elif guess == "s":
+            
             number_guess += 1        
         else:
             print('error')
