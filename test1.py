@@ -205,6 +205,7 @@
 #         try:
 #             str_value = input("Enter a Whole Number")
 #             value = int(str_value)
+#             flag = false
 #         except ValueError:
 #             print("Please enter a whole number")
 # ---------------------------------------------------------------------------
