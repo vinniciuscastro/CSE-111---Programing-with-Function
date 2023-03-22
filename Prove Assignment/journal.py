@@ -2,6 +2,8 @@
 # March 16th 2023
 import csv
 import random 
+from datetime import datetime
+
 def main():
     try:
         vc_main_list = []
@@ -38,6 +40,11 @@ def get_choice():
 def get_name():
     vc_name = input("What is your name? ")
     return vc_name
+
+def date():
+    vc_current_date_and_time = datetime.now()
+    
+    
 
 if __name__ == "__main__":
     main()
