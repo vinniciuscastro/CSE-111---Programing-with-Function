@@ -1,8 +1,7 @@
-# Copyright 2020, Brigham Young University-Idaho. All rights reserved.
-
+import math
 import tkinter as tk
 from tkinter import Frame, Label, Button
-from number_entry import IntEntry
+from number_entry import IntEntry, FloatEntry
 
 
 def main():
@@ -12,7 +11,7 @@ def main():
     # Create the main window. In tkinter,
     # a window is also called a frame.
     frm_main = Frame(root)
-    frm_main.master.title("Heart Rate")
+    frm_main.master.title("Tire Volume")
     frm_main.pack(padx=4, pady=3, fill=tk.BOTH, expand=1)
 
     # Call the populate_main_window function, which will add
@@ -47,94 +46,100 @@ def populate_main_window(frm_main):
         frm_main: the main frame (window)
     Return: nothing
     """
-    # Create a label that displays "Age:"
-    lbl_age = Label(frm_main, text="Age (12 - 90):")
+    # Create labels for the number entries and the result.
+    lbl_width = Label(frm_main, text="Width (80 - 300):")
+    lbl_ratio = Label(frm_main, text="Aspect Ratio (30 - 90):")
+    lbl_diam = Label(frm_main, text="Diameter (7 - 30):")
+    lbl_volume = Label(frm_main, text="Volume:")
 
-    # Create an integer entry box where the user will enter her age.
-    ent_age = IntEntry(frm_main, width=4, lower_bound=12, upper_bound=90)
+    # Create three number entries.
+    ent_width = IntEntry(frm_main, width=5, lower_bound=80, upper_bound=300)
+    ent_ratio = IntEntry(frm_main, width=5, lower_bound=30, upper_bound=90)
+    ent_diam = FloatEntry(frm_main, width=5, lower_bound=7, upper_bound=30)
 
-    # Create a label that displays "years"
-    lbl_age_units = Label(frm_main, text="years")
+    # Create a label to display the result.
+    txt_volume = Label(frm_main, width=5, anchor="e")
 
-    # Create a label that displays "Rates:"
-    lbl_rates = Label(frm_main, text="Rates:")
-
-    # Create labels that will display the results.
-    lbl_slow = Label(frm_main, width=3)
-    lbl_fast = Label(frm_main, width=3)
-    lbl_rate_units = Label(frm_main, text="beats/minute")
+    # Create labels to display the units.
+    lbl_width_units = Label(frm_main, text="millimeters")
+    # Ratios don't have units
+    lbl_diam_units = Label(frm_main, text="inches")
+    lbl_vol_units = Label(frm_main, text="liters")
 
     # Create the Clear button.
     btn_clear = Button(frm_main, text="Clear")
 
-    # Layout all the labels, entry boxes, and buttons in a grid.
-    lbl_age.grid(      row=0, column=0, padx=3, pady=3)
-    ent_age.grid(      row=0, column=1, padx=3, pady=3)
-    lbl_age_units.grid(row=0, column=2, padx=0, pady=3)
+    # Layout all the labels, number entries, and buttons in a grid.
+    lbl_width.grid(      row=0, column=0, padx=3, pady=2, sticky="e")
+    ent_width.grid(      row=0, column=1, padx=3, pady=2, sticky="w")
+    lbl_width_units.grid(row=0, column=2, padx=0, pady=2, sticky="w")
 
-    lbl_rates.grid(     row=1, column=0, padx=(30,3), pady=3)
-    lbl_slow.grid(      row=1, column=1, padx=3, pady=3)
-    lbl_fast.grid(      row=1, column=2, padx=3, pady=3)
-    lbl_rate_units.grid(row=1, column=3, padx=0, pady=3)
+    lbl_ratio.grid(     row=1, column=0, padx=3, pady=2, sticky="e")
+    ent_ratio.grid(     row=1, column=1, padx=3, pady=2, sticky="w")
+    # Ratios don't have units.
 
-    btn_clear.grid(row=2, column=0, padx=3, pady=3, columnspan=4, sticky="w")
+    lbl_diam.grid(      row=2, column=0, padx=3, pady=2, sticky="e")
+    ent_diam.grid(      row=2, column=1, padx=3, pady=2, sticky="w")
+    lbl_diam_units.grid(row=2, column=2, padx=0, pady=2, sticky="w")
+
+    lbl_volume.grid(   row=3, column=0, padx=3, pady=2, sticky="e")
+    txt_volume.grid(   row=3, column=1, padx=3, pady=2, sticky="w")
+    lbl_vol_units.grid(row=3, column=2, padx=0, pady=2, sticky="w")
+    btn_clear.grid(    row=3, column=3, padx=3, pady=2)
 
 
-    # This function will be called each time the user releases a key.
+    # This function is called each time the user releases a key.
     def calculate(event):
-        """Compute and display the user's slowest
-        and fastest beneficial heart rates.
-        """
+        """Compute the approximate volume of a tire in liters."""
         try:
-            # Get the user's age.
-            age = ent_age.get()
+            # Get the user input.
+            w = ent_width.get()
+            a = ent_ratio.get()
+            d = ent_diam.get()
 
-            # Compute the user's maximum heart rate.
-            max_rate = 220 - age
+            # Compute the tire volume in liters.
+            v = (math.pi * w * w * a * (w * a + 2540 * d)) / 10_000_000_000
 
-            # Compute the user's slowest and
-            # fastest beneficial heart rates.
-            slow = max_rate * 0.65
-            fast = max_rate * 0.85
-
-            # Display the slowest and fastest benficial
-            # heart rates for the user to see.
-            lbl_slow.config(text=f"{slow:.0f}")
-            lbl_fast.config(text=f"{fast:.0f}")
+            # Display the volume rounded to one digit
+            # after the decimal for the user to see.
+            txt_volume.config(text=f"{v:.2f}")
 
         except ValueError:
-            # When the user deletes all the digits in the age
-            # entry box, clear the slowest and fastest labels.
-            lbl_slow.config(text="")
-            lbl_fast.config(text="")
+            # When the user deletes all the digits in one
+            # of the number entries, clear the result.
+            txt_volume.config(text="")
 
 
-    # This function will be called each time
-    # the user presses the "Clear" button.
+    # This function is called each time
+    # the user clicks the "Clear" button.
     def clear():
         """Clear all the inputs and outputs."""
         btn_clear.focus()
-        ent_age.clear()
-        lbl_slow.config(text="")
-        lbl_fast.config(text="")
-        ent_age.focus()
+        ent_width.clear()
+        ent_ratio.clear()
+        ent_diam.clear()
+        txt_volume.config(text="")
+        ent_width.focus()
 
-    # Bind the calculate function to the age entry box so
-    # that the computer will call the calculate function
-    # when the user changes the text in the entry box.
-    ent_age.bind("<KeyRelease>", calculate)
+
+    # Bind the calculate function to the three number
+    # entries so that the calculate function will be called
+    # when the user changes the text in the number entries.
+    ent_width.bind("<KeyRelease>", calculate)
+    ent_ratio.bind("<KeyRelease>", calculate)
+    ent_diam.bind("<KeyRelease>", calculate)
 
     # Bind the clear function to the clear button so
-    # that the computer will call the clear function
-    # when the user clicks the clear button.
+    # that the clear function will be called when the
+    # user clicks the clear button.
     btn_clear.config(command=clear)
 
-    # Give the keyboard focus to the age entry box.
-    ent_age.focus()
+    # Give the keyboard focus to the width text field.
+    ent_width.focus()
 
 
 # If this file is executed like this:
-# > python heart_rate.py
+# > python teach_solution.py
 # then call the main function. However, if this file is simply
 # imported (e.g. into a test file), then skip the call to main.
 if __name__ == "__main__":
