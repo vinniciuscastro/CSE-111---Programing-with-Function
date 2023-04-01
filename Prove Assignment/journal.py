@@ -1,6 +1,6 @@
 # Vinnicius Castro
 # March 16th 2023
-""""This program is a journal where user get a prompt message that will help them to add start registering their thoughts 
+""""This program is a journal where users get a prompt message that will help them to add start registering their thoughts 
 this program will also allow users, to save their journals and load journals previously saved"""
 import random 
 import datetime
