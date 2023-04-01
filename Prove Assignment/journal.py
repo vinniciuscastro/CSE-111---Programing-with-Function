@@ -1,6 +1,7 @@
 # Vinnicius Castro
 # March 16th 2023
-import csv
+""""This program is a journal where user get a prompt message that will help them to add start registering their thoughts 
+this program will also allow users, to save their journals and load journals previously saved"""
 import random 
 import datetime
 
@@ -70,6 +71,14 @@ def questions():
         "Who was the most interesting person you interacted with today?",
         "How did I see the hand of the Lord in my life today?",
         "What was the strongest emotion I felt today?",
+        "What goals did I work towards today and how much progress did I make?",
+        "What are three things I am grateful for from today?",
+        "Did I learn anything new today? If so, what was it?",
+        "What was the highlight of my day?",
+        "Did I do something today that was outside of my comfort zone? If so, how did it make me feel?",
+        "Was there anything that distracted me or prevented me from focusing on my tasks today?",
+        "Did I have any moments of self-reflection or introspection today? If so, what did I think about?",
+        "What could I have done differently today to make it a more productive or enjoyable day?"
     ]
     return vc_questions
 
