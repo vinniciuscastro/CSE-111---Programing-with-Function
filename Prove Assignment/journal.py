@@ -11,7 +11,9 @@ def main():
         vc_name = get_name()
         vc_questions = questions()
         loop = True
-
+        
+        print(welcome())
+        print()
         while loop:
             vc_prompt = get_choice()
 
@@ -50,6 +52,9 @@ def get_choice():
     print("5. Quit")
     vc_prompt = int(input("What would you like to do? "))
     return vc_prompt
+def welcome():
+    return "Welcome to your Journal"
+
 
 def get_name():
     vc_name = input("What is your name? ")
